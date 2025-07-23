@@ -34,47 +34,34 @@ export default function App() {
   };
 
   return (
-    <div className="bg-red-200 text-black p-2 mb-4">Test Tailwind</div>
-    <div className="p-4 max-w-2xl mx-auto text-center">
-      <h1 className="text-2xl font-bold mb-4">Actividad de vocabulario</h1>
-      <input
-        type="text"
-        placeholder="Tu nombre"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        className="p-2 border rounded w-full mb-4"
-      />
-      <div className="flex flex-wrap gap-1 mb-4 text-justify">
-        {palabras.map((p) =>
-          p.palabra.match(/^\s+$/) ? (
-            <span key={p.id}>{p.palabra}</span>
-          ) : (
-            <span
-              key={p.id}
-              onClick={() => cambiarEstado(p.id)}
-          className={`inline-block cursor-pointer px-1 rounded border transition-colors ${
-            p.estado === "dudosa"
-              ? "bg-yellow-300"
-              : p.estado === "segura"
-              ? "bg-green-300"
-              : ""
-          }`}
+  <div className="container">
+    <h1>Actividad de vocabulario</h1>
 
+    <input
+      type="text"
+      placeholder="Tu nombre"
+      value={nombre}
+      onChange={(e) => setNombre(e.target.value)}
+    />
 
-            >
-              {p.palabra}
-            </span>
-          )
-        )}
-      </div>
-      <button
-        onClick={generarCSV}
-        disabled={!nombre}
-        className="bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-400"
-      >
-        Enviar por WhatsApp
-      </button>
+    <div className="texto">
+      {palabras.map((p) =>
+        p.palabra.match(/^\s+$/) ? (
+          <span key={p.id}>{p.palabra}</span>
+        ) : (
+          <span
+            key={p.id}
+            onClick={() => cambiarEstado(p.id)}
+            className={`palabra ${p.estado}`}
+          >
+            {p.palabra}
+          </span>
+        )
+      )}
     </div>
-  );
-}
 
+    <button onClick={generarCSV} disabled={!nombre}>
+      Enviar por WhatsApp
+    </button>
+  </div>
+);
