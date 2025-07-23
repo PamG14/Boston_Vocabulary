@@ -44,11 +44,13 @@ export default function App() {
             key={p.id}
             onClick={() => cambiarEstado(p.id)}
             className={ "cursor-pointer px-1 rounded " +
-  (p.estado === "dudosa"
-    ? "bg-yellow-300"
-    : p.estado === "segura"
-    ? "bg-green-300"
-    : "bg-gray-100")
+              p.estado === "ninguno" || p.palabra.match(/^\\s+$/)
+  ? ""
+  : p.estado === "dudosa"
+  ? "bg-yellow-300"
+  : "bg-green-300"
+
+
 }
           >
             {p.palabra}
