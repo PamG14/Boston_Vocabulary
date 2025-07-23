@@ -35,7 +35,7 @@ export default function App() {
 
   return (
   <div className="container">
-    <h1>Actividad de vocabulario</h1>
+    <h1>Vocabulary test</h1>
 
     <input
       type="text"
