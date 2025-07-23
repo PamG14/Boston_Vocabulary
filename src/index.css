@@ -1,5 +1,28 @@
-
 body {
-  font-family: sans-serif;
-  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdf7ec; /* cremita */
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  padding: 2rem;
+}
+
+h1 {
+  color: #333;
+}
+
+input {
+  font-size: 1rem;
+}
+
+span {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+button {
+  font-size: 1rem;
 }
