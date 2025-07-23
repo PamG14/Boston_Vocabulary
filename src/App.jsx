@@ -52,7 +52,7 @@ export default function App() {
                 p.estado === "ninguno" || p.palabra.match(/^\\s+$/)
                   ? ""
                   : p.estado === "dudosa"
-                  ? "bg-yellow-300"
+                  ? "bg-blue-300"
                   : "bg-green-300"
               }
 
