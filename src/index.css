@@ -26,3 +26,31 @@ span {
 button {
   font-size: 1rem;
 }
+.container {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.texto {
+  text-align: justify;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.palabra {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dudosa {
+  background-color: #fef08a; /* amarillo claro */
+}
+
+.segura {
+  background-color: #86efac; /* verde claro */
+}
