@@ -34,6 +34,7 @@ export default function App() {
   };
 
   return (
+    <div className="bg-red-200 text-black p-2 mb-4">Test Tailwind</div>
     <div className="p-4 max-w-2xl mx-auto text-center">
       <h1 className="text-2xl font-bold mb-4">Actividad de vocabulario</h1>
       <input
