@@ -43,7 +43,13 @@ export default function App() {
           <span
             key={p.id}
             onClick={() => cambiarEstado(p.id)}
-            className={\`cursor-pointer px-1 rounded \${p.estado === "dudosa" ? "bg-yellow-300" : p.estado === "segura" ? "bg-green-300" : "bg-gray-100"}\`}
+            className={ "cursor-pointer px-1 rounded " +
+  (p.estado === "dudosa"
+    ? "bg-yellow-300"
+    : p.estado === "segura"
+    ? "bg-green-300"
+    : "bg-gray-100")
+}
           >
             {p.palabra}
           </span>
