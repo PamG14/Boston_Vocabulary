@@ -38,7 +38,7 @@ export default function App() {
         onChange={(e) => setNombre(e.target.value)}
         className="p-2 border rounded w-full mb-4"
       />
-      <div className="flex flex-wrap gap-1 mb-4">
+      <div className="flex flex-wrap gap-1 mb-4 text-justify">
         {palabras.map((p) => (
           <span
             key={p.id}
