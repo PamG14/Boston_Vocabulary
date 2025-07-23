@@ -52,13 +52,14 @@ export default function App() {
             <span
               key={p.id}
               onClick={() => cambiarEstado(p.id)}
-              className={ "cursor-pointer px-1 rounded " +
-                p.estado === "ninguno" || p.palabra.match(/^\\s+$/)
-                  ? ""
-                  : p.estado === "dudosa"
-                  ? "bg-blue-300"
-                  : "bg-green-300"
-              }
+          className={`inline-block cursor-pointer px-1 rounded border transition-colors ${
+            p.estado === "dudosa"
+              ? "bg-yellow-300"
+              : p.estado === "segura"
+              ? "bg-green-300"
+              : ""
+          }`}
+
 
             >
               {p.palabra}
