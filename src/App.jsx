@@ -6,7 +6,7 @@ const textoEjemplo = `The teenagers turning old clothes into money by Rita Park 
 export default function App() {
   const [nombre, setNombre] = useState("");
   const [palabras, setPalabras] = useState(
-    textoEjemplo.split(/\s+/).map((p, i) => ({ palabra: p, estado: "ninguno", id: i }))
+    textoEjemplo.match(/\S+|\s+/g).map((p, i) => ({ palabra: p, estado: "ninguno", id: i }))
   );
 
   const cicloEstado = (estado) => {
