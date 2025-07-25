@@ -90,19 +90,20 @@ const generarCSV = () => {
       onChange={(e) => setNombre(e.target.value)}
     />
 
-    <div className="texto">
-      {palabras.map((p) =>
-        p.palabra.match(/^\s+$/) ? (
-          <span
-              key={p.id}
-              onClick={() => cambiarEstado(p.id)}
-              className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
-            >
-          {p.palabra}
-        </span>
-        )
-      )}
-    </div>
+<div className="texto">
+  {palabras.map((p) =>
+    p.palabra.match(/^\s+$/) ? (
+      <span
+        key={p.id}
+        onClick={() => cambiarEstado(p.id)}
+        className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
+      >
+        {p.palabra}
+      </span>
+    ) : null // <-- este `else` es necesario
+  )}
+</div>
+
 
     <button onClick={generarCSV} disabled={!nombre}>
       Enviar por WhatsApp
