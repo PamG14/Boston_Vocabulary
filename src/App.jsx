@@ -44,7 +44,7 @@ const generarCSV = () => {
     .map(p => `${nombre},${p.palabra},${p.estado}`)
     .join("\n");
 
-  const mensaje = `Nombre: ${nombre}\nTexto: Unidad 5\n\n${filas}`;
+  const mensaje = `Nombre: ${nombre}\nTexto: ${textos[textoActual].titulo}\n\n${filas}`;
   const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 
