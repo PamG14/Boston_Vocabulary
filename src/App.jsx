@@ -60,6 +60,28 @@ const generarCSV = () => {
   return (
   <div className="container">
     <h1>Vocabulary test</h1>
+    <label className="block mb-2 font-semibold">Seleccioná el texto:</label>
+<select
+  value={textoActual}
+  onChange={(e) => {
+    const nuevoTexto = e.target.value;
+    setTextoActual(nuevoTexto);
+    setPalabras(
+      textos[nuevoTexto].contenido.match(/\S+|\s+/g).map((p, i) => ({
+        palabra: p,
+        estado: "ninguno",
+        id: i
+      }))
+    );
+  }}
+  className="p-2 border rounded w-full mb-4"
+>
+  {Object.entries(textos).map(([clave, { titulo }]) => (
+    <option key={clave} value={clave}>
+      {titulo}
+    </option>
+  ))}
+</select>
 
     <input
       type="text"
