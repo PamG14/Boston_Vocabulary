@@ -8,14 +8,9 @@ export default function App() {
     textoEjemplo.match(/\S+|\s+/g).map((p, i) => ({ palabra: p, estado: "ninguno", id: i }))
   );
 
-  const cicloEstado = (estado) => {
-    switch (estado) {
-      case "ninguno": return "dudosa";
-      case "dudosa": return "segura";
-      case "segura": return "ninguno";
-      default: return "ninguno";
-    }
-  };
+const cicloEstado = (estado) => {
+  return estado === "dudosa" ? "ninguno" : "dudosa";
+};
 
   const cambiarEstado = (id) => {
     setPalabras(palabras.map(p =>
