@@ -88,19 +88,22 @@ export default function App() {
         onChange={(e) => setNombre(e.target.value)}
       />
 
-      <div className="texto">
-        {palabras.map((p) =>
-          p.palabra.match(/^\s+$/) ? (
-            <span
-              key={p.id}
-              onClick={() => cambiarEstado(p.id)}
-              className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
-            >
-              {p.palabra}
-            </span>
-          ) : null
-        )}
-      </div>
+<div className="texto">
+  {palabras.map((p) =>
+    p.palabra.match(/^\s+$/) ? (
+      <span key={p.id}>{p.palabra}</span> // espacios normales
+    ) : (
+      <span
+        key={p.id}
+        onClick={() => cambiarEstado(p.id)}
+        className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
+      >
+        {p.palabra}
+      </span>
+    )
+  )}
+</div>
+
 
       <button onClick={generarCSV} disabled={!nombre}>
         Enviar por WhatsApp
