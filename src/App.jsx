@@ -11,26 +11,22 @@ const textos = {
   }
 };
 
-const [textoActual, setTextoActual] = useState("unidad5");
-
-const [palabras, setPalabras] = useState(
-  textos[textoActual].contenido.match(/\S+|\s+/g).map((p, i) => ({
-    palabra: p,
-    estado: "ninguno",
-    id: i
-  }))
-);
-
-
 export default function App() {
-  const [nombre, setNombre] = useState("");
+  const [textoActual, setTextoActual] = useState("unidad5");
+
   const [palabras, setPalabras] = useState(
-    textoEjemplo.match(/\S+|\s+/g).map((p, i) => ({ palabra: p, estado: "ninguno", id: i }))
+    textos["unidad5"].contenido.match(/\S+|\s+/g).map((p, i) => ({
+      palabra: p,
+      estado: "ninguno",
+      id: i
+    }))
   );
 
-const cicloEstado = (estado) => {
-  return estado === "dudosa" ? "ninguno" : "dudosa";
-};
+  const [nombre, setNombre] = useState("");
+
+  const cicloEstado = (estado) => {
+    return estado === "dudosa" ? "ninguno" : "dudosa";
+  };
 
   const cambiarEstado = (id) => {
     setPalabras(palabras.map(p =>
@@ -38,76 +34,77 @@ const cicloEstado = (estado) => {
     ));
   };
 
-const generarCSV = () => {
-  const filas = palabras
-    .filter(p => !p.palabra.match(/^\s+$/)) // excluye espacios
-    .map(p => `${nombre},${p.palabra},${p.estado}`)
-    .join("\n");
+  const generarCSV = () => {
+    const filas = palabras
+      .filter(p => !p.palabra.match(/^\s+$/)) // excluye espacios
+      .map(p => `${nombre},${p.palabra},${p.estado}`)
+      .join("\n");
 
-  const mensaje = `Nombre: ${nombre}\nTexto: ${textos[textoActual].titulo}\n\n${filas}`;
-  const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank');
+    const mensaje = `Nombre: ${nombre}\nTexto: ${textos[textoActual].titulo}\n\n${filas}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
 
-  // Reiniciar estado después de enviar
-  setNombre("");
-  setPalabras(textoEjemplo.match(/\S+|\s+/g).map((p, i) => ({
-    palabra: p,
-    estado: "ninguno",
-    id: i
-  })));
-};
-
-  return (
-  <div className="container">
-    <h1>Vocabulary test</h1>
-    <label className="block mb-2 font-semibold">Seleccioná el texto:</label>
-<select
-  value={textoActual}
-  onChange={(e) => {
-    const nuevoTexto = e.target.value;
-    setTextoActual(nuevoTexto);
+    // Reiniciar estado después de enviar
+    setNombre("");
     setPalabras(
-      textos[nuevoTexto].contenido.match(/\S+|\s+/g).map((p, i) => ({
+      textos[textoActual].contenido.match(/\S+|\s+/g).map((p, i) => ({
         palabra: p,
         estado: "ninguno",
         id: i
       }))
     );
-  }}
-  className="p-2 border rounded w-full mb-4"
->
-  {Object.entries(textos).map(([clave, { titulo }]) => (
-    <option key={clave} value={clave}>
-      {titulo}
-    </option>
-  ))}
-</select>
+  };
 
-    <input
-      type="text"
-      placeholder="Tu nombre"
-      value={nombre}
-      onChange={(e) => setNombre(e.target.value)}
-    />
-
-<div className="texto">
-  {palabras.map((p) =>
-    p.palabra.match(/^\s+$/) ? (
-      <span
-        key={p.id}
-        onClick={() => cambiarEstado(p.id)}
-        className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
+  return (
+    <div className="container">
+      <h1>Vocabulary test</h1>
+      <label className="block mb-2 font-semibold">Seleccioná el texto:</label>
+      <select
+        value={textoActual}
+        onChange={(e) => {
+          const nuevoTexto = e.target.value;
+          setTextoActual(nuevoTexto);
+          setPalabras(
+            textos[nuevoTexto].contenido.match(/\S+|\s+/g).map((p, i) => ({
+              palabra: p,
+              estado: "ninguno",
+              id: i
+            }))
+          );
+        }}
+        className="p-2 border rounded w-full mb-4"
       >
-        {p.palabra}
-      </span>
-    ) : null // <-- este `else` es necesario
-  )}
-</div>
+        {Object.entries(textos).map(([clave, { titulo }]) => (
+          <option key={clave} value={clave}>
+            {titulo}
+          </option>
+        ))}
+      </select>
 
+      <input
+        type="text"
+        placeholder="Tu nombre"
+        value={nombre}
+        onChange={(e) => setNombre(e.target.value)}
+      />
 
-    <button onClick={generarCSV} disabled={!nombre}>
-      Enviar por WhatsApp
-    </button>
-  </div>
-);
+      <div className="texto">
+        {palabras.map((p) =>
+          p.palabra.match(/^\s+$/) ? (
+            <span
+              key={p.id}
+              onClick={() => cambiarEstado(p.id)}
+              className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
+            >
+              {p.palabra}
+            </span>
+          ) : null
+        )}
+      </div>
+
+      <button onClick={generarCSV} disabled={!nombre}>
+        Enviar por WhatsApp
+      </button>
+    </div>
+  );
 }
