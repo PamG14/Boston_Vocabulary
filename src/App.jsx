@@ -51,15 +51,13 @@ const generarCSV = () => {
     <div className="texto">
       {palabras.map((p) =>
         p.palabra.match(/^\s+$/) ? (
-          <span key={p.id}>{p.palabra}</span>
-        ) : (
           <span
-            key={p.id}
-            onClick={() => cambiarEstado(p.id)}
-            className={`palabra ${p.estado}`}
-          >
-            {p.palabra}
-          </span>
+              key={p.id}
+              onClick={() => cambiarEstado(p.id)}
+              className={`palabra ${p.estado === "dudosa" ? "dudosa" : ""}`}
+            >
+          {p.palabra}
+        </span>
         )
       )}
     </div>
