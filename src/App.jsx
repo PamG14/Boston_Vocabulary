@@ -1,6 +1,26 @@
 import { useState } from 'react';
 
-const textoEjemplo = `The teenagers turning old clothes into money by Rita Park People say that Generation Z – people born between 1995 and 2008 – don’t like spending money as much as older people. Generation Z are also good at thinking of interesting business ideas, and they care about the environment. Maybe this is why so many teenagers are selling second-hand clothes to other teenagers on social media. Some teenagers are just selling their own clothes, but others have big online ‘shops’. They find cool clothes in second-hand shops. Sometimes they alter the clothes to make them look better. Then they take photos of the clothes and post them on social media. Customers can say what price they want to pay. For example, one person might say ’£10‘ for a sweatshirt, but if a second person says ’£11‘, the second person gets the sweatshirt. Two teenage friends, Emily Adams and Sophia Lopez, have an online clothes ‘shop’ on social media, and around 50,000 people like their page. They work hard and they don’t have much free time. Emily takes photos of clothes before school and replies to messages from customers between lessons. After school, she goes to the post office to send clothes to customers or goes to second-hand shops to find more clothes to sell. Social media is changing. Now it’s not just where you show photos of your friends or your holidays. For many teenagers it’s where they go shopping, and for some it’s their job. It’s also changing the way we think about second-hand clothes, and that’s a really good thing`;
+const textos = {
+  unidad5: {
+    titulo: "Unidad 5",
+    contenido: `The teenagers turning old clothes into money by Rita Park People say that Generation Z – people born between 1995 and 2008 – don’t like spending money as much as older people...`
+  },
+  unidad6: {
+    titulo: "Unidad 6",
+    contenido: `Este es un segundo texto de prueba. Podés reemplazarlo por lo que quieras.`
+  }
+};
+
+const [textoActual, setTextoActual] = useState("unidad5");
+
+const [palabras, setPalabras] = useState(
+  textos[textoActual].contenido.match(/\S+|\s+/g).map((p, i) => ({
+    palabra: p,
+    estado: "ninguno",
+    id: i
+  }))
+);
+
 
 export default function App() {
   const [nombre, setNombre] = useState("");
