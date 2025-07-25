@@ -23,15 +23,24 @@ export default function App() {
     ));
   };
 
-  const generarCSV = () => {
-    const filas =  palabras
-  .filter(p => !p.palabra.match(/^\s+$/)) // excluye espacios
-  .map(p => `${nombre},${p.palabra},${p.estado}`)
-  .join("\n");
-    const mensaje = `Nombre: ${nombre}\nTexto: Unidad 5\n\n${filas}`;
-    const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-  };
+const generarCSV = () => {
+  const filas = palabras
+    .filter(p => !p.palabra.match(/^\s+$/)) // excluye espacios
+    .map(p => `${nombre},${p.palabra},${p.estado}`)
+    .join("\n");
+
+  const mensaje = `Nombre: ${nombre}\nTexto: Unidad 5\n\n${filas}`;
+  const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+
+  // Reiniciar estado después de enviar
+  setNombre("");
+  setPalabras(textoEjemplo.match(/\S+|\s+/g).map((p, i) => ({
+    palabra: p,
+    estado: "ninguno",
+    id: i
+  })));
+};
 
   return (
   <div className="container">
