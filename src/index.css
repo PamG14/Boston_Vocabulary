@@ -11,6 +11,7 @@ body {
 
 h1 {
   color: #333;
+  margin-bottom: 1.5rem; /* separa título del resto */
 }
 
 input {
@@ -25,11 +26,27 @@ span {
 
 button {
   font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem; /* separación arriba del botón */
+  width: 100%; /* que ocupe todo el ancho */
 }
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
 .container {
   max-width: 700px;
   margin: auto;
   text-align: center;
+  padding: 0 1rem; /* para que no quede tan pegado a los bordes */
 }
 
 .texto {
@@ -37,6 +54,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  margin-top: 1rem; /* separa el texto del input */
 }
 
 .palabra {
@@ -49,6 +67,34 @@ button {
 
 .dudosa {
   background-color: #fef08a; /* amarillo claro */
+}
+
+/* ESTILOS NUEVOS para el formulario */
+
+.container label,
+.container select,
+.container input {
+  display: block;      /* para que estén en líneas separadas */
+  width: 100%;         /* ocupen todo el ancho posible */
+  box-sizing: border-box; /* que padding no rompa ancho */
+  margin-bottom: 1rem; /* espacio debajo */
+  font-weight: 600;
+}
+
+.container select,
+.container input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.container select:focus,
+.container input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
 }
 
 
